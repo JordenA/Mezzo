@@ -16,7 +16,7 @@ public class alphaAlgo implements Algorithm {
 
 	@Override
 	public void fitness() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub 
 
 	}
 
