@@ -8,7 +8,7 @@ public interface Algorithm {
 	void run();
 	void fitness();
 	Individual[] reproduce(Individual[] currentGeneration);
-	Individual generateIndividual();;
+	Individual generateIndividual();
 
 	
 }
