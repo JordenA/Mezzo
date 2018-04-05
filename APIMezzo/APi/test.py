@@ -26,28 +26,21 @@ token_enc = base64.standard_b64encode(token)
 headers = {'Authorization': 'Bearer ' + token_enc}
 #print (headers)
 
-call = 'genres/search'
 
-genre = 'indie' # indie, calypso
 
-params = {'name': genre, 'access_token': token}  # token is always passed as an option via ?access_token=
-resp = requests.get(base + call, params, headers=headers)
-resp.status_code, resp.headers['content-type']
-#print(resp.text)
 
-# as JSON
-json = resp.json()
-results = json['results']
-#print(results)
 
-print("List of Genres UIDs and names:")
 
-for res in results:
-    print(res['uid'], '\t', res['name'])
 
-call = 'genres'
 
-params = {'access_token': token}
+
+call = 'tracks/search'
+
+track = 'like suicide'
+artist = 'Soundgarden'
+
+#params = {'name': track} # confusing result, where scores do not make much sense
+params = {'title': track, 'nickname': artist, 'limit': 10, 'output': 'owners', 'access_token': token} # different, more exact result
 
 resp = requests.get(base + call, params, headers=headers)
 resp.status_code
@@ -55,13 +48,10 @@ resp.status_code
 json = resp.json()
 results = json['results']
 
-print (json)
-
-# recursive function
-def print_genretree(depth, genretree):
-    for genre in genretree:
-        print('-' * depth, genre['name']) #, len(genre['children']), "children")
-        if 'children' in genre.keys():
-            print_genretree(depth+1, genre['children']) # recursive call, 1 level deeper
-
-print_genretree(0, results)
+for track in results:
+    if len(track['owners']) > 0:
+         # note: owners (artists) is a list, we take the 1st one
+        artist = track['owners'][0]['nickname']
+    else:
+        artist = ''
+    print(track['name'], "-", artist)
