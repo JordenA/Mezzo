@@ -5,6 +5,11 @@ import requests
 import base64
 
 
+
+
+
+
+
 # base URL for all API calls to Musimap
 base = 'https://api.musimap.net/'
 
@@ -25,8 +30,10 @@ token = json['access_token']
 token_enc = base64.standard_b64encode(token)
 headers = {'Authorization': 'Bearer ' + token_enc}
 #print (headers)
-
 call = 'genres/search'
+
+
+
 
 genre = 'indie' # indie, calypso
 
@@ -65,3 +72,37 @@ def print_genretree(depth, genretree):
             print_genretree(depth+1, genre['children']) # recursive call, 1 level deeper
 
 print_genretree(0, results)
+
+
+json = resp.json()
+results = json['results']
+
+
+
+
+###########
+
+call = 'tracks/search'
+
+track = 'just like suicide'
+
+#params = {'name': track} # confusing result, where scores do not make much sense
+params = {'title': track, 'limit': 10, 'output': 'owners,details,properties,album,moods,influences', 'access_token': token} # different, more exact result
+
+
+resp = requests.get(base + call, params, headers=headers)
+resp.status_code
+
+
+json = resp.json()
+results = json['results']
+
+for track in results:
+    if len(track['owners']) > 0:
+         # note: owners (artists) is a list, we take the 1st one
+        artist = track['owners'][0]['nickname']
+    else:
+        artist = ''
+    print(track['name'], "-", artist)
+    
+    print (json)
