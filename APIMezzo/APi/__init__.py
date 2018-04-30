@@ -33,58 +33,11 @@ headers = {'Authorization': 'Bearer ' + token_enc}
 call = 'genres/search'
 
 
-
-
-genre = 'indie' # indie, calypso
-
-params = {'name': genre, 'access_token': token}  # token is always passed as an option via ?access_token=
-resp = requests.get(base + call, params, headers=headers)
-resp.status_code, resp.headers['content-type']
-#print(resp.text)
-
-# as JSON
-json = resp.json()
-results = json['results']
-#print(results)
-
-print("List of Genres UIDs and names:")
-
-for res in results:
-    print(res['uid'], '\t', res['name'])
-
-call = 'genres'
-
-params = {'access_token': token}
-
-resp = requests.get(base + call, params, headers=headers)
-resp.status_code
-
-json = resp.json()
-results = json['results']
-
-print (json)
-
-# recursive function
-def print_genretree(depth, genretree):
-    for genre in genretree:
-        print('-' * depth, genre['name']) #, len(genre['children']), "children")
-        if 'children' in genre.keys():
-            print_genretree(depth+1, genre['children']) # recursive call, 1 level deeper
-
-print_genretree(0, results)
-
-
-json = resp.json()
-results = json['results']
-
-
-
-
 ###########
 
 call = 'tracks/search'
 
-track = 'just like suicide'
+track = 'sissy that walk'
 
 #params = {'name': track} # confusing result, where scores do not make much sense
 params = {'title': track, 'limit': 10, 'output': 'owners,details,properties,album,moods,influences', 'access_token': token} # different, more exact result
