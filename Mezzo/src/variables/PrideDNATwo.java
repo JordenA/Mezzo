@@ -1,23 +1,27 @@
 package variables;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class PrideDNATwo implements DNA {
 
+	List<BaseSixtyFour> myDNA;
 	@Override
 	public void initDNA() {
-		// TODO Auto-generated method stub
+		myDNA = new LinkedList<BaseSixtyFour>();
 
 	}
 
 	@Override
-	public void initDNA(int[] arr) {
-		// TODO Auto-generated method stub
+	public void initDNA(List arr) {
+		myDNA = new LinkedList<BaseSixtyFour>(arr);
 
 	}
 
 	@Override
-	public int[] getDNA() {
+	public List getDNA() {
 		// TODO Auto-generated method stub
-		return null;
+		return myDNA;
 	}
 
 }

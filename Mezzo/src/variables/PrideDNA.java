@@ -1,10 +1,12 @@
 package variables;
 
+import java.util.List;
+
 public class PrideDNA implements DNA {
 
-	private int[] indiDNA;
+	//private int[] indiDNA;
 	public PrideDNA(int[] arr){
-		indiDNA= arr;
+		//indiDNA= arr;
 	}
 	@Override
 	public void initDNA() {
@@ -13,13 +15,13 @@ public class PrideDNA implements DNA {
 	}
 
 	@Override
-	public void initDNA(int[] arr) {
+	public void initDNA(List arr) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public int[] getDNA() {
+	public List getDNA() {
 		// TODO Auto-generated method stub
 		return null;
 	}
