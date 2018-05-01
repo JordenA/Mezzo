@@ -35,12 +35,12 @@ call = 'genres/search'
 
 ###########
 
-call = 'tracks/search'
+call = 'artists/search'
 
-track = 'sissy that walk'
+artist = 'Rihanna'
 
 #params = {'name': track} # confusing result, where scores do not make much sense
-params = {'title': track, 'limit': 10, 'output': 'owners,details,properties,album,moods,influences', 'access_token': token} # different, more exact result
+params = {'nickname': artist, 'access_token': token} # different, more exact result
 
 
 resp = requests.get(base + call, params, headers=headers)
@@ -50,12 +50,5 @@ resp.status_code
 json = resp.json()
 results = json['results']
 
-for track in results:
-    if len(track['owners']) > 0:
-         # note: owners (artists) is a list, we take the 1st one
-        artist = track['owners'][0]['nickname']
-    else:
-        artist = ''
-    print(track['name'], "-", artist)
-    
-    print (json)
+for r in results:
+    print(str(r['score']) + '\t' + r['uid'] + '\t' + r['nickname'])

@@ -1,31 +1,6 @@
 package variables;
 
-import java.util.Base64;
-
-public class MoodBase implements BaseSixtyFour {
-
-	String name;
-	Base64 UID;
-	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public Base64 getUID() {
-		return UID;
-	}
-
-	@Override
-	public void setName(String name) {
-		this.name = name;
-
-	}
-
-	@Override
-	public void setUID(Base64 UID) {
-		this.UID = UID;
-
-	}
+public class MoodBase extends BaseSixtyFourAbstract {
+	
 
 }

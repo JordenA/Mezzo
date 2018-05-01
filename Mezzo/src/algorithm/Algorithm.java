@@ -9,6 +9,8 @@ public interface Algorithm {
 	void fitness();
 	Individual[] reproduce(Individual[] currentGeneration);
 	Individual generateIndividual();
+	Individual[] createFirstPool();
+	
 
 	
 }

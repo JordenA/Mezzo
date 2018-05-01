@@ -1,5 +1,6 @@
 package algorithm;
 import java.util.Random;
+import java.util.Scanner;
 
 import variables.DNA;
 import variables.Individual;
@@ -8,6 +9,8 @@ import variables.PrideIndividual;
 
 public class alphaAlgo implements Algorithm {
 
+	
+	
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
@@ -38,6 +41,33 @@ public class alphaAlgo implements Algorithm {
 		return null;
 		
 		
+	}
+
+	@Override
+	public Individual[] createFirstPool() {
+		String[] topArists = new String[20];
+		Individual[] firstPool = new Individual[20];
+		topArists[0] = printquestion("britney", "beyonce");
+		
+		
+		return null;
+	}
+	
+	private String printquestion(String firstArtist, String SecondArtist){
+		Scanner reader = new Scanner(System.in);
+		System.out.println("who do you prefer? " + firstArtist +  " or " + SecondArtist + "?");
+		System.out.println("for " + firstArtist + " press 1 and for " + SecondArtist + " press 2");
+		int n = reader.nextInt();
+		reader.close();
+		switch(n){
+		case 1:
+			return firstArtist;
+		case 2:
+			return SecondArtist;
+		default:
+			System.out.println("please type 1 OR 2 ONLY!!!!");
+			return "ERROR";
+		} 
 	}
 	
 	

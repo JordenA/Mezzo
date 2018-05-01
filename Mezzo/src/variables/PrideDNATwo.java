@@ -6,6 +6,7 @@ import java.util.List;
 public class PrideDNATwo implements DNA {
 
 	List<BaseSixtyFour> myDNA;
+	
 	@Override
 	public void initDNA() {
 		myDNA = new LinkedList<BaseSixtyFour>();
@@ -20,7 +21,6 @@ public class PrideDNATwo implements DNA {
 
 	@Override
 	public List getDNA() {
-		// TODO Auto-generated method stub
 		return myDNA;
 	}
 
