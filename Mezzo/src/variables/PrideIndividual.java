@@ -11,6 +11,11 @@ public class PrideIndividual implements Individual {
 	private boolean isMutation;
 	private boolean isELite;
 	
+	
+	public PrideIndividual() {
+		
+	}
+	
 	public PrideIndividual(DNA indiDNA){
 		pDNA= indiDNA;
 	}

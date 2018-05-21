@@ -5,6 +5,10 @@ public abstract class AbstractChunk implements Chunk {
 	String name;
 	int score;
 	
+	AbstractChunk(String name, String score){
+		this.name = name;
+		this.score = Integer.parseInt(score);
+	}
 	
 	@Override
 	public String getName() {

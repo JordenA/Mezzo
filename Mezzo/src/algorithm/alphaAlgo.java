@@ -1,23 +1,25 @@
 package algorithm;
+import java.net.NetworkInterface;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
 
+import DNA.Chunk;
 import DNA.DNA;
+import DNA.MoodChunk;
 import DNA.PrideDNA;
+import convertors.Convertor;
+import convertors.MoodConvertor;
 import variables.Individual;
 import variables.PrideIndividual;
 
 public class alphaAlgo implements Algorithm {
 
-	
-	
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
 
-	}
+	Convertor moodConvrtr = new MoodConvertor();
 
 	@Override
 	public void fitness() {
@@ -28,15 +30,7 @@ public class alphaAlgo implements Algorithm {
 	//create random DNA and returning person with this DNA
 	@Override
 	public Individual generateIndividual() {
-		/**
-		int[] arrDNA= new int[50];
-		Random rand = new Random((System.currentTimeMillis()));
-		for (int i=0; i<50; i++){
-			arrDNA[i] = (rand.nextInt(50))%2;
-		}
-		DNA DNARes= new PrideDNA(arrDNA); 
-		return new PrideIndividual(DNARes);
-		**/
+
 		return null;
 	}
 
@@ -46,13 +40,14 @@ public class alphaAlgo implements Algorithm {
 		
 		
 	}
-
 	@Override
 	public Individual[] createFirstPool() {
-		String[] topArists = new String[20];
-		Individual[] firstPool = new Individual[20];
-		topArists[0] = printquestion("britney", "beyonce");
-		
+		return null;
+	}
+	
+	@Override
+	public Individual[] createFirstPool(Map<String, String>[] userPicks) {
+		//here we create the first pool
 		
 		return null;
 	}

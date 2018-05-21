@@ -7,6 +7,16 @@ public class PrideDNA implements DNA {
 
 	List<Chunk> myDNA;
 	
+	
+	public PrideDNA(){
+		
+	}
+	
+	public PrideDNA(String userPick){
+		myDNA = new LinkedList<>();
+		
+	}
+	
 	@Override
 	public void initDNA() {
 		myDNA = new LinkedList<>();
