@@ -1,6 +1,6 @@
 package algorithm;
 
-import variables.DNA;
+import DNA.DNA;
 import variables.Individual;
 
 public interface Algorithm {

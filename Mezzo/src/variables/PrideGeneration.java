@@ -15,7 +15,7 @@ public class PrideGeneration implements Generation {
 		}
 		int[] arr={1,0,1,1,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,1,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1};
 		// in the future will be user choice
-		indi[20] = new PrideIndividual(new PrideDNA(arr));
+		//indi[20] = new PrideIndividual(new PrideDNA(arr));
 	}
 	
 	@Override

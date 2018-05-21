@@ -1,10 +1,12 @@
 package algorithm;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-import variables.DNA;
+import DNA.DNA;
+import DNA.PrideDNA;
 import variables.Individual;
-import variables.PrideDNA;
 import variables.PrideIndividual;
 
 public class alphaAlgo implements Algorithm {
@@ -26,6 +28,7 @@ public class alphaAlgo implements Algorithm {
 	//create random DNA and returning person with this DNA
 	@Override
 	public Individual generateIndividual() {
+		/**
 		int[] arrDNA= new int[50];
 		Random rand = new Random((System.currentTimeMillis()));
 		for (int i=0; i<50; i++){
@@ -33,7 +36,8 @@ public class alphaAlgo implements Algorithm {
 		}
 		DNA DNARes= new PrideDNA(arrDNA); 
 		return new PrideIndividual(DNARes);
-		
+		**/
+		return null;
 	}
 
 	@Override
@@ -68,6 +72,36 @@ public class alphaAlgo implements Algorithm {
 			System.out.println("please type 1 OR 2 ONLY!!!!");
 			return "ERROR";
 		} 
+	}
+	
+	public void setGeneration(String [] strings) {
+		for(int i = 0; i < strings.length ; i++) {
+			
+		}
+	}
+	
+	public String getDataFromInput(String input) {
+		/**
+		Map<String, String> ToReturn = new HashMap<String, String>();
+		String[] partsMood = input.split("\\[moods\\]");
+		String afterMoods = partsMood[1];
+		for(int i = 0; i < 10 ; i ++) {
+			ToReturn.put(getSpeficDataFromInput, value)getSpeficDataFromInput
+		}
+		return moodName;
+		
+		**/
+		
+		return null;
+	}
+	
+	private String getSpeficDataFromInput(String input) {
+		String[] partsName = input.split("\\[name\\]");
+		String afterName = partsName[1];
+		String[] partsArrow = afterName.split("=> ");
+		String moodNameWithTail = partsArrow[1];
+		String[] noTail = moodNameWithTail.split("\\[");
+		return noTail[0];
 	}
 	
 	
