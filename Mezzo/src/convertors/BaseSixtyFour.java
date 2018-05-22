@@ -1,4 +1,4 @@
-package variables;
+package convertors;
 import java.util.Base64;
 
 public interface BaseSixtyFour {

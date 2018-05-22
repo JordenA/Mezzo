@@ -5,29 +5,23 @@ import algorithm.alphaAlgo;
 
 public class PrideGeneration implements Generation {
 	int fitness;
-	Algorithm algo= new alphaAlgo();
+	Algorithm algo;
+	Individual[] pool;
 	
 	PrideGeneration(){ 
-		fitness=0;
-		for(int i=0;i<20; i++){
-			Individual person= algo.generateIndividual();
-			indi[i] =person; //filing the generation with 19 persons for the first time(each person has DNA)
-		}
-		int[] arr={1,0,1,1,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,0,0,1,1,1,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,1};
-		// in the future will be user choice
-		indi[20] = new PrideIndividual(new PrideDNA(arr));
+		algo= new alphaAlgo();
+		pool = this.algo.createFirstPool();
 	}
 	
+
 	@Override
 	public Individual[] getGeneration() {
-		// TODO Auto-generated method stub
-		return null;
+		return pool;
 	}
 
 	@Override
 	public void reproduce() {
 		algo.reproduce(indi);
-
 	}
 	
 }
