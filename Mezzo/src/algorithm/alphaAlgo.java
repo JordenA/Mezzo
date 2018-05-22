@@ -19,8 +19,11 @@ import variables.PrideIndividual;
 public class alphaAlgo implements Algorithm {
 
 
-	Convertor moodConvrtr = new MoodConvertor();
+	Convertor moodConvrtr;
 
+	public alphaAlgo(){
+		moodConvrtr = new MoodConvertor();
+	}
 	@Override
 	public void fitness() {
 		// TODO Auto-generated method stub 
@@ -30,8 +33,17 @@ public class alphaAlgo implements Algorithm {
 	//create random DNA and returning person with this DNA
 	@Override
 	public Individual generateIndividual() {
-
+		
 		return null;
+	}
+	
+	@Override
+	public Individual generateIndividual(Chunk[] allQualities) {
+		Individual toReturn = new PrideIndividual();
+		for(Chunk c:allQualities) {
+			toReturn.addChunk(c);
+		}
+		return toReturn;
 	}
 
 	@Override
@@ -46,10 +58,13 @@ public class alphaAlgo implements Algorithm {
 	}
 	
 	@Override
-	public Individual[] createFirstPool(Map<String, String>[] userPicks) {
-		//here we create the first pool
+	public Individual[] createFirstPool(Chunk[][] userPicks) {
+		Individual[] firstPool = new PrideIndividual[20];
+		for(int i = 0; i < userPicks.length ;i++) {
+			firstPool[i] = this.generateIndividual(userPicks[i]);
+		}
 		
-		return null;
+		return firstPool;
 	}
 	
 	private String printquestion(String firstArtist, String SecondArtist){

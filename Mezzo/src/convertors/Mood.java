@@ -11,6 +11,7 @@ public class Mood extends BaseSixtyFourAbstract{
 	private int number;
 	
 	public Mood(String moodName, BaseSixtyFour moodParent, int moodNumber) {
+		
 		name= moodName;
 		this.parent = moodParent;
 		this.number = moodNumber;

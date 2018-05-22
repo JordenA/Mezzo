@@ -2,6 +2,7 @@ package algorithm;
 
 import java.util.Map;
 
+import DNA.Chunk;
 import DNA.DNA;
 import variables.Individual;
 
@@ -11,8 +12,8 @@ public interface Algorithm {
 	Individual[] reproduce(Individual[] currentGeneration);
 	Individual generateIndividual();
 	Individual[] createFirstPool();
-	Individual[] createFirstPool(Map<String, String>[] userPicks);
-	
+	Individual generateIndividual(Chunk[] allQualities);
+	Individual[] createFirstPool(Chunk[][] userPicks); 
 
 	
 }

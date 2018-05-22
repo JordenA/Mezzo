@@ -1,8 +1,10 @@
 package textReader;
 import java.util.Map;
 
+import DNA.Chunk;
+
 public interface Reader {
 	
-	public Map read(String strToRead);
+	public Chunk[] read(String strToRead);
 
 }
