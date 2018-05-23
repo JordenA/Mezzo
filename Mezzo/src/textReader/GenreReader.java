@@ -2,7 +2,7 @@ package textReader;
 
 import DNA.Chunk;
 
-public class GenreReader extends AbsractReader {
+public class GenreReader extends AbstractReader {
 
 	@Override
 	public Chunk[] read(String strToRead) {

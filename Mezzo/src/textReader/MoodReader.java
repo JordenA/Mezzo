@@ -6,7 +6,7 @@ import java.util.Map;
 import DNA.Chunk;
 import DNA.MoodChunk;
 
-public class MoodReader extends AbsractReader {
+public class MoodReader extends AbstractReader {
 
 
 	

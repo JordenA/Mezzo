@@ -54,6 +54,8 @@ public class alphaAlgo implements Algorithm {
 	}
 	@Override
 	public Individual[] createFirstPool() {
+		Individual[] firstPool = new PrideIndividual[20];
+		
 		return null;
 	}
 	

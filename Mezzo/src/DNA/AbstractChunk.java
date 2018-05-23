@@ -7,7 +7,8 @@ public abstract class AbstractChunk implements Chunk {
 	
 	AbstractChunk(String name, String score){
 		this.name = name;
-		this.score = Integer.parseInt(score);
+		Double tempDouble = Double.parseDouble(score);
+		this.score = tempDouble.intValue();
 	}
 	
 	@Override

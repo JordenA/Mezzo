@@ -1,8 +1,8 @@
 package DNA;
 
-public class GenreChunck extends AbstractChunk {
+public class GenreChunk extends AbstractChunk {
 
-	GenreChunck(String name, String score) {
+	GenreChunk(String name, String score) {
 		super(name, score);
 		// TODO Auto-generated constructor stub
 	}
