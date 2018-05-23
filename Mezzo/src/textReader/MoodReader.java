@@ -12,7 +12,7 @@ public class MoodReader extends AbstractReader {
 	
 	
 	@Override
-	public Chunk[] read(String strToRead) {
+	public Chunk[] readChunk(String strToRead) {
 		Chunk[] toReturn = new Chunk[20];
 		String mood;
 		mood = strToRead.substring(strToRead.lastIndexOf(" [moods] =>") + 1);

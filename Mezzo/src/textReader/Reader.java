@@ -5,6 +5,8 @@ import DNA.Chunk;
 
 public interface Reader {
 	
-	public Chunk[] read(String strToRead);
+	public Chunk[] readChunk(String strToRead);
+	
+	public String readUID(String strToRead);
 
 }
