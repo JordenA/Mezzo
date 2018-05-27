@@ -1,5 +1,6 @@
 package algorithm;
 import java.net.NetworkInterface;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import DNA.MoodChunk;
 import DNA.PrideDNA;
 import convertors.Convertor;
 import convertors.MoodConvertor;
+import variables.Generation;
 import variables.Individual;
 import variables.PrideIndividual;
 
@@ -29,14 +31,8 @@ public class alphaAlgo implements Algorithm {
 		// TODO Auto-generated method stub 
 
 	}
-
-	//create random DNA and returning person with this DNA
-	@Override
-	public Individual generateIndividual() {
-		
-		return null;
-	}
 	
+	//for now only for first indivdual in first generation
 	@Override
 	public Individual generateIndividual(Chunk[] allQualities) {
 		Individual toReturn = new PrideIndividual();
@@ -47,16 +43,10 @@ public class alphaAlgo implements Algorithm {
 	}
 
 	@Override
-	public Individual[] reproduce(Individual[] currentGeneration) {
+	public Individual[] reproduce(Generation currentGeneration) {
 		return null;
 		
 		
-	}
-	@Override
-	public Individual[] createFirstPool() {
-		Individual[] firstPool = new PrideIndividual[20];
-		
-		return null;
 	}
 	
 	@Override
@@ -68,23 +58,7 @@ public class alphaAlgo implements Algorithm {
 		
 		return firstPool;
 	}
-	
-	private String printquestion(String firstArtist, String SecondArtist){
-		Scanner reader = new Scanner(System.in);
-		System.out.println("who do you prefer? " + firstArtist +  " or " + SecondArtist + "?");
-		System.out.println("for " + firstArtist + " press 1 and for " + SecondArtist + " press 2");
-		int n = reader.nextInt();
-		reader.close();
-		switch(n){
-		case 1:
-			return firstArtist;
-		case 2:
-			return SecondArtist;
-		default:
-			System.out.println("please type 1 OR 2 ONLY!!!!");
-			return "ERROR";
-		} 
-	}
+
 	
 	public void setGeneration(String [] strings) {
 		for(int i = 0; i < strings.length ; i++) {
@@ -106,7 +80,7 @@ public class alphaAlgo implements Algorithm {
 		
 		return null;
 	}
-	
+	/**
 	private String getSpeficDataFromInput(String input) {
 		String[] partsName = input.split("\\[name\\]");
 		String afterName = partsName[1];
@@ -114,6 +88,33 @@ public class alphaAlgo implements Algorithm {
 		String moodNameWithTail = partsArrow[1];
 		String[] noTail = moodNameWithTail.split("\\[");
 		return noTail[0];
+	}
+	**/
+	private Individual[] reproduceHelper(Individual alphaMale, Individual[] ElliteFemales, Individual[] elliteMales, Individual mutation) {
+		
+		return null;
+	}
+	
+	private Individual makeChild(Individual parentA, Individual parentB) {
+		Date d = new Date();
+		Random rand = new Random(d.getTime());
+		//making sure no null
+		Individual toReturn = new PrideIndividual();
+		int iterationNumberA = parentA.getPrideDNA().getDNA().size();
+		int iterationNumberB = parentB.getPrideDNA().getDNA().size();
+		int iterationNumber = Math.max(iterationNumberA, iterationNumberB);
+		for(int i = 0; i < iterationNumber; i++) {
+			Chunk toAdd;
+			int randNum = rand.nextInt(2);
+			if(randNum == 0) {
+				toAdd = parentA.getPrideDNA().getDNA().get(i);
+			}else {
+				toAdd = parentB.getPrideDNA().getDNA().get(i);
+			}
+			toReturn.addChunk(toAdd);
+		}
+		
+		return toReturn;
 	}
 	
 	

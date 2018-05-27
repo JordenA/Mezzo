@@ -2,8 +2,11 @@ package test;
 
 import algorithm.Algorithm;
 import algorithm.alphaAlgo;
+import musicData.Mood;
+import musicData.MoodHierarchy;
 import textReader.InfluencedBy;
 import textReader.InfluencingReader;
+import textReader.MoodHierarchyReader;
 import textReader.MoodReader;
 import textReader.PropertiesReader;
 import textReader.Reader;
@@ -23,7 +26,7 @@ public class Test {
 	
 	public void testering() {
 		Algorithm alg = new alphaAlgo();
-		alg.createFirstPool();
+		//alg.createFirstPool();
 	}
 	
 	public Test(){
@@ -53,8 +56,13 @@ public class Test {
 		//rdrInfBy.read(influencedBystr);
 		//rdrUID.readUID(UIDString);
 		//rdrProp.readChunk(propertyStr);
-		rdrTag.readChunk(tagStr);
-		
+		//rdrTag.readChunk(tagStr);
+		MoodHierarchyReader mhr = new MoodHierarchyReader();
+		MoodHierarchy mh = mhr.readMoodHierarchy("fff");
+		for(Mood m:mh.getMap().values()) {
+			System.out.println("name of mood is " + m.getName() + " and his parent is " + m.getParentName());
+		}
+		System.out.println(mh.getParentName("kitsch"));
 		return null;
 	}
 
