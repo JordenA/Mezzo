@@ -14,6 +14,9 @@ public class InfluencingReader extends AbstractReader {
 		String influencing;
 		influencing = strToRead.substring(strToRead.lastIndexOf(" \\\"results\\\": ") + 1);
 		for(int i = 0; i < 3 ; i++) {
+			influencing = influencing.substring(influencing.indexOf("\"uid\":\"")+ "\"uid\":\"".length());
+			//removing everything from what we want to assign
+			String UID = influencing.substring(0, influencing.indexOf("\",\""));
 			influencing = influencing.substring(influencing.indexOf("\"nickname\":")+ 12);
 			//creating new empty mood
 			String influencingToAssign = influencing.substring(0, influencing.indexOf("\""));
@@ -22,7 +25,7 @@ public class InfluencingReader extends AbstractReader {
 			String influencingScore = influencing.substring(0, influencing.indexOf("}"));
 			System.out.println(influencingToAssign);
 			System.out.println(influencingScore);
-			toReturn[i] = new InfluencingChunk(influencingToAssign, influencingScore);
+			toReturn[i] = new InfluencingChunk(influencingToAssign, UID, influencingScore);
 		}
 		
 		return toReturn;

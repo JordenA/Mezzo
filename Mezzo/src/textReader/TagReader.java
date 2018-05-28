@@ -16,7 +16,7 @@ public class TagReader extends AbstractReader {
 			//removing the mood we used
 			results = results.substring(results.indexOf("\",\"") + 3);
 			System.out.println(tagName);
-			toReturn[i] = new TagChunk(tagName, "100");
+			toReturn[i] = new TagChunk(tagName,"this-is-tag-no-UID", "100");
 		}
 		
 		return toReturn;

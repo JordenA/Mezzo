@@ -12,6 +12,9 @@ public class PropertiesReader extends AbstractReader {
 		String results;
 		results = strToRead.substring(strToRead.indexOf("\"properties\":") + 13);
 		for(int i = 0; i < toReturn.length ; i++) {
+			results = results.substring(results.indexOf("\"uid\":\"")+ "\"uid\":\"".length());
+			//removing everything from what we want to assign
+			String UID = results.substring(0, results.indexOf("\",\""));
 			results = results.substring(results.indexOf("\"name\":\"")+ 8);
 			//creating new empty mood
 			String propertyName = results.substring(0, results.indexOf("\""));
@@ -24,7 +27,7 @@ public class PropertiesReader extends AbstractReader {
 			System.out.println(propertyName);
 			System.out.println(propertyCategory);
 			System.out.println( propertyScore);
-			toReturn[i] = new PropertiesChunk(propertyName, propertyCategory, propertyScore);
+			toReturn[i] = new PropertiesChunk(propertyName, propertyCategory, UID, propertyScore);
 		}
 		
 		return toReturn;
