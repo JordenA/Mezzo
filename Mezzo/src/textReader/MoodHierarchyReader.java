@@ -15,12 +15,16 @@ public class MoodHierarchyReader {
 		String mood;
 		mood = toRead.substring(toRead.indexOf("\"results") + 10);
 		for(int i = 0; i < 256 ; i++) {
+			//getting UID
+			mood = mood.substring(mood.indexOf("uid\":\"") + "uid\":\"".length());
+			String moodUID = mood.substring(0, mood.indexOf("\""));
+			//System.out.println(moodUID);
 			mood = mood.substring(mood.indexOf("\"name\":\"") + "\"name\":\"".length());
 			String moodName = mood.substring(0, mood.indexOf("\""));
 			//removing the mood we used
 			mood = mood.substring(mood.indexOf("\",\"") + 3);
-			//System.out.println("adding mood " + moodName + " with parent " + curpar);
-			toReturn.addMood(moodName,curpar);
+			System.out.println("adding mood " + moodName + " with UID " + moodUID + " with parent " + curpar);
+			toReturn.addMood(moodName,moodUID, curpar);
 			mood = mood.substring(mood.indexOf("children\":[") + "children\":[".length());
 			if(mood.startsWith("{")) {
 				curpar = moodName;

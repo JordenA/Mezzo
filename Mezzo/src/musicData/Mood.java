@@ -5,20 +5,20 @@ import convertors.BaseSixtyFour;
 public class Mood {
 	private Category cat; 
 	private String name;
-	//private boolean isLeaf;
+	private String UID;
 	private Mood parent;
 	
-	public Mood(String moodName, Mood moodParent) {
-		
+	public Mood(String moodName,String UID, Mood moodParent) {
+		this.UID = UID;
 		this.name= moodName;
 		this.parent = moodParent;
 		if(moodParent != null) {
-			this.cat = this.getCategory(moodParent.getName());
-			if(cat == null) {
-				System.out.println("NULL CATAGORY!!!!");
+			if(moodParent.getCategory() == null) {
+				this.cat = this.getCategory(moodParent.getName());
 			}
-		}else {
-			cat = null;
+			else {
+				this.cat = moodParent.getCategory();
+			}
 		}
 	}
 

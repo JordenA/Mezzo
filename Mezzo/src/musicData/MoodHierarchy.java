@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class MoodHierarchy {
 
-	Mood root = new Mood("Base", null);
+	Mood root = new Mood("Base","0000-00000", null);
 	Map<String, Mood> allMoods;
 	
 	public MoodHierarchy() {
@@ -23,9 +23,9 @@ public class MoodHierarchy {
 		return allMoods.get(curpar).getParentName();
 	}
 	
-	public void addMood(String name, String parentName) {
+	public void addMood(String name,String UID, String parentName) {
 		//Mood MoodParent = allMoods.get(parentName);
-		Mood MoodToAdd = new Mood(name, allMoods.get(parentName));
+		Mood MoodToAdd = new Mood(name, UID, allMoods.get(parentName));
 		allMoods.put(name, MoodToAdd);
 	}
 	
