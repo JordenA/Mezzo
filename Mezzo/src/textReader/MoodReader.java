@@ -6,28 +6,30 @@ import java.util.Map;
 import DNA.Chunk;
 import DNA.MoodChunk;
 
-public class MoodReader extends AbsractReader {
+public class MoodReader extends AbstractReader {
 
 
-	
 	
 	@Override
-	public Chunk[] read(String strToRead) {
+	public Chunk[] readChunk(String strToRead) {
 		Chunk[] toReturn = new Chunk[20];
 		String mood;
-		mood = strToRead.substring(strToRead.lastIndexOf(" [moods] =>") + 1);
+		mood = strToRead.substring(strToRead.indexOf("\"moods\":") + "\"moods\":".length());
 		for(int i = 0; i < 20 ; i++) {
+			mood = mood.substring(mood.indexOf("\"uid\":\"")+ "\"uid\":\"".length());
 			//removing everything from what we want to assign
-			mood = mood.substring(mood.indexOf("[name]")+ 10);
+			String UID = mood.substring(0, mood.indexOf("\",\""));
+			mood = mood.substring(mood.indexOf("\"name\":\"")+ "\"name\":\"".length());
 			//creating new empty mood
-			String moodToAssign = mood.substring(0, mood.indexOf(" "));
+			String moodToAssign = mood.substring(0, mood.indexOf("\""));
 			//removing the mood we used
-			mood = mood.substring(mood.indexOf("[importance] =>") + 16);
+			mood = mood.substring(mood.indexOf("\"importance\":") + "\"importance\":".length());
 			
-			String moodImportance = mood.substring(0, mood.indexOf(" "));
+			String moodImportance = mood.substring(0, mood.indexOf("}"));
 			System.out.println(moodToAssign);
+			System.out.println(UID);
 			System.out.println(moodImportance);
-			toReturn[i] = new MoodChunk(moodToAssign, moodImportance);
+			toReturn[i] = new MoodChunk(moodToAssign,UID,  moodImportance);
 		}
 		// TODO Auto-generated method stub
 		return toReturn;

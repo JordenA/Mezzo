@@ -2,8 +2,8 @@ package DNA;
 
 public class MoodChunk extends  AbstractChunk {
 
-	public MoodChunk(String name, String score) {
-		super(name, score);
+	public MoodChunk(String name, String UID, String score) {
+		super(name, UID, score);
 		// TODO Auto-generated constructor stub
 	}
 	
