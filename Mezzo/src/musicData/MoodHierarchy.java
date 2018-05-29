@@ -20,7 +20,7 @@ public class MoodHierarchy {
 	}
 
 	public String getParentName(String curpar) {
-		return allMoods.get(curpar).getName();
+		return allMoods.get(curpar).getParentName();
 	}
 	
 	public void addMood(String name, String parentName) {

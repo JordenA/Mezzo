@@ -37,7 +37,12 @@ public class Mood {
 	}
 	
 	public String getParentName() {
-		return this.parent.getName();
+		if(parent == null) {
+			System.out.println("the mood " + name + " has null parent");
+			return "nullParent";
+		}
+		
+		return parent.getName();
 	}
 	
 	public enum Category{

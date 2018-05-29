@@ -51,18 +51,18 @@ public class Test {
 	}
 	
 	public String testerTwo() {
-		rdr.readChunk(moodstr);
-		rdrInf.readChunk(influencingStr);
-		rdrInfBy.readChunk(influencedBystr);
-		rdrUID.readUID(UIDString);
-		rdrProp.readChunk(propertyStr);
-		rdrTag.readChunk(tagStr);
-		//MoodHierarchyReader mhr = new MoodHierarchyReader();
-		//MoodHierarchy mh = mhr.readMoodHierarchy("fff");
-		//for(Mood m:mh.getMap().values()) {
-			//System.out.println("name of mood is " + m.getName() + " and his parent is " + m.getParentName());
-		//}
-		//System.out.println(mh.getParentName("kitsch"));
+		//rdr.readChunk(moodstr);
+		//rdrInf.readChunk(influencingStr);
+		//rdrInfBy.readChunk(influencedBystr);
+		//rdrUID.readUID(UIDString);
+		//rdrProp.readChunk(propertyStr);
+		//rdrTag.readChunk(tagStr);
+		MoodHierarchyReader mhr = new MoodHierarchyReader();
+		MoodHierarchy mh = mhr.readMoodHierarchy("fff");
+		for(Mood m:mh.getMap().values()) {
+			System.out.println("name of mood is " + m.getName() + " and his parent is " + m.getParentName());
+		}
+		System.out.println(mh.getParentName("kitsch"));
 		return null;
 	}
 

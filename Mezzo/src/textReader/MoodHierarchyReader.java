@@ -19,22 +19,23 @@ public class MoodHierarchyReader {
 			String moodName = mood.substring(0, mood.indexOf("\""));
 			//removing the mood we used
 			mood = mood.substring(mood.indexOf("\",\"") + 3);
+			System.out.println("adding mood " + moodName + " with parent " + curpar);
+			toReturn.addMood(moodName,curpar);
 			if(mood.startsWith("children\":[{")) {
 				if(moodName.equals("intellect")) {
 					System.out.println("we re here!");
 				}
 				curpar = moodName;
-			}else if(mood.startsWith("children\":[]")) {
+			}else if(mood.startsWith("\"children\":[]},{")) {
+				System.out.println("adding mood " + moodName + " with parent " + curpar);
+				toReturn.addMood(moodName,curpar);
+			}else if(mood.startsWith("\"children\":[]}]},")) {
 				if(moodName.equals("intellect")) {
 					System.out.println("we re here!");
 				}
 				curpar = toReturn.getParentName(curpar);
 			}
-			if(moodName.equals("intellect")) {
-				System.out.println("we re here!");
-			}
-			System.out.println(moodName);
-			toReturn.addMood(moodName,curpar);
+			
 			//toReturn[i] = new TagChunk(tagName, "100");
 			
 		}
