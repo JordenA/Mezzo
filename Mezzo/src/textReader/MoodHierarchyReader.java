@@ -11,7 +11,7 @@ public class MoodHierarchyReader {
 	public MoodHierarchy readMoodHierarchy(String strToRead) {
 		MoodHierarchy toReturn = new MoodHierarchy();
 		Mood currentParent = toReturn.getRoot();
-		String curpar = toReturn.getRootName();
+		String curpar = currentParent.getName();
 		String mood;
 		mood = toRead.substring(toRead.indexOf("\"results") + 10);
 		for(int i = 0; i < 256 ; i++) {
@@ -19,14 +19,31 @@ public class MoodHierarchyReader {
 			String moodName = mood.substring(0, mood.indexOf("\""));
 			//removing the mood we used
 			mood = mood.substring(mood.indexOf("\",\"") + 3);
-			System.out.println("adding mood " + moodName + " with parent " + curpar);
+			//System.out.println("adding mood " + moodName + " with parent " + curpar);
 			toReturn.addMood(moodName,curpar);
-			if(mood.startsWith("children\":[{")) {
-				if(moodName.equals("intellect")) {
-					System.out.println("we re here!");
-				}
+			mood = mood.substring(mood.indexOf("children\":[") + "children\":[".length());
+			if(mood.startsWith("{")) {
 				curpar = moodName;
-			}else if(mood.startsWith("\"children\":[]},{")) {
+			}//removing the first one
+			else if(mood.startsWith("]}")) {
+				mood = mood.substring(mood.indexOf("]}") + "]}".length());
+			}
+			while(mood.startsWith("]}")) {
+				mood = mood.substring(mood.indexOf("]}") + "]}".length());
+				System.out.println("current parent is now " + curpar);
+				if(!curpar.equals("nullParent")) {
+					curpar = toReturn.getParentName(curpar);
+				}
+				else {
+					break;
+				}
+				
+			}
+			
+			
+			
+			/**
+			else if(mood.startsWith("\"children\":[]},{")) {
 				System.out.println("adding mood " + moodName + " with parent " + curpar);
 				toReturn.addMood(moodName,curpar);
 			}else if(mood.startsWith("\"children\":[]}]},")) {
@@ -37,7 +54,7 @@ public class MoodHierarchyReader {
 			}
 			
 			//toReturn[i] = new TagChunk(tagName, "100");
-			
+			**/
 		}
 		return toReturn;
 	}

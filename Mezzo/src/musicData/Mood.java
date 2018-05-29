@@ -13,7 +13,10 @@ public class Mood {
 		this.name= moodName;
 		this.parent = moodParent;
 		if(moodParent != null) {
-			this.cat = moodParent.getCategory();
+			this.cat = this.getCategory(moodParent.getName());
+			if(cat == null) {
+				System.out.println("NULL CATAGORY!!!!");
+			}
 		}else {
 			cat = null;
 		}
@@ -47,6 +50,25 @@ public class Mood {
 	
 	public enum Category{
 		ABOVE, DOWN, IN, ON, OUT, UP
+	}
+	
+	private Category getCategory(String parentName) {
+		if(parentName.equals("Up (Air)")) {
+			return Category.UP;
+		}else if(parentName.equals("On (Ground)")) {
+			return Category.ON;
+		}else if(parentName.equals("Out (Wood)")) {
+			return Category.OUT;
+		}else if(parentName.equals("Above (Fire)")) {
+			return Category.ABOVE;
+		}else if(parentName.equals("Down (Metal)")) {
+			return Category.DOWN;
+		}else if(parentName.equals("In\\/within (Water)")) {
+			return Category.IN;
+		}else {
+			return null;
+		}
+			
 	}
 	
 }
