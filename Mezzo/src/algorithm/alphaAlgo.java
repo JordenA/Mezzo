@@ -14,17 +14,28 @@ import DNA.MoodChunk;
 import DNA.PrideDNA;
 import convertors.Convertor;
 import convertors.MoodConvertor;
+import musicData.Mood;
+import musicData.MoodHierarchy;
+import textReader.MoodHierarchyReader;
 import variables.Generation;
 import variables.Individual;
+import variables.PrideGeneration;
 import variables.PrideIndividual;
 
 public class alphaAlgo implements Algorithm {
 
 
 	Convertor moodConvrtr;
-
-	public alphaAlgo(){
+	MoodHierarchy MH;
+	Date d;
+	Random rand;
+	
+	public alphaAlgo(MoodHierarchy MH){
 		moodConvrtr = new MoodConvertor();
+		this.MH = MH;
+		d = new Date();
+		rand = new Random(d.getTime());
+		
 	}
 	@Override
 	public void fitness() {
@@ -43,9 +54,35 @@ public class alphaAlgo implements Algorithm {
 	}
 
 	@Override
-	public Individual[] reproduce(Generation currentGeneration) {
-		return null;
+	public Individual[] reproduce(Individual[] pickedSongs) {
+		Individual[] toReturn = new PrideIndividual[20];
+		if(pickedSongs != null) {
+			toReturn[0] = makeChild(pickedSongs[0],pickedSongs[1]);
+			toReturn[1] = makeChild(pickedSongs[0],pickedSongs[2]);
+			toReturn[2] = makeChild(pickedSongs[0],pickedSongs[2]);
+			toReturn[3] = makeChild(pickedSongs[0],pickedSongs[3]);
+			toReturn[4] = makeChild(pickedSongs[0],pickedSongs[3]);
+			toReturn[5] = makeChild(pickedSongs[0],pickedSongs[4]);
+			toReturn[6] = makeChild(pickedSongs[0],pickedSongs[7]);
+			toReturn[7] = makeChild(pickedSongs[0],pickedSongs[7]);
+			toReturn[8] = makeChild(pickedSongs[0],pickedSongs[6]);
+			toReturn[9] = makeChild(pickedSongs[0],pickedSongs[9]);
+			toReturn[10] = makeChild(pickedSongs[5],pickedSongs[2]);
+			toReturn[11] = makeChild(pickedSongs[5],pickedSongs[9]);
+			toReturn[12] = makeChild(pickedSongs[1],pickedSongs[8]);
+			toReturn[13] = makeChild(pickedSongs[9],pickedSongs[8]);
+			toReturn[14] = makeChild(pickedSongs[6],pickedSongs[8]);
+			toReturn[15] = makeChild(pickedSongs[3],pickedSongs[7]);
+			toReturn[16] = makeChild(pickedSongs[3],pickedSongs[2]);
+			toReturn[17] = makeChild(pickedSongs[7],pickedSongs[4]);
+			toReturn[18] = makeChild(pickedSongs[6],pickedSongs[4]);
+			toReturn[19] = makeChild(pickedSongs[3],pickedSongs[4]);
+			//creating the mutation
+			toReturn[18] = createMutation(toReturn[18]);
+			toReturn[19] = createMutation(toReturn[19]);
+		}
 		
+		return toReturn;	
 		
 	}
 	
@@ -57,13 +94,6 @@ public class alphaAlgo implements Algorithm {
 		}
 		
 		return firstPool;
-	}
-
-	
-	public void setGeneration(String [] strings) {
-		for(int i = 0; i < strings.length ; i++) {
-			
-		}
 	}
 	
 	public String getDataFromInput(String input) {
@@ -80,24 +110,8 @@ public class alphaAlgo implements Algorithm {
 		
 		return null;
 	}
-	/**
-	private String getSpeficDataFromInput(String input) {
-		String[] partsName = input.split("\\[name\\]");
-		String afterName = partsName[1];
-		String[] partsArrow = afterName.split("=> ");
-		String moodNameWithTail = partsArrow[1];
-		String[] noTail = moodNameWithTail.split("\\[");
-		return noTail[0];
-	}
-	**/
-	private Individual[] reproduceHelper(Individual alphaMale, Individual[] ElliteFemales, Individual[] elliteMales, Individual mutation) {
-		
-		return null;
-	}
 	
 	private Individual makeChild(Individual parentA, Individual parentB) {
-		Date d = new Date();
-		Random rand = new Random(d.getTime());
 		//making sure no null
 		Individual toReturn = new PrideIndividual();
 		int iterationNumberA = parentA.getPrideDNA().getDNA().size();
@@ -116,6 +130,29 @@ public class alphaAlgo implements Algorithm {
 		
 		return toReturn;
 	}
+	@Override
+	public Individual createMutation(Individual indi) {
+		//number of moods in DNA
+		Individual toReturn = indi;
+		int ChunkNumber = rand.nextInt(6);
+		Mood newMood = MH.getDifferentMood(indi.getPrideDNA().getDNA().get(ChunkNumber).getName());
+		toReturn.getPrideDNA().getDNA().add(ChunkNumber, 
+				new MoodChunk(newMood.getName(), newMood.getUID(),
+						Integer.toString(rand.nextInt(100))));
+		
+		//returning the new Individual
+		return toReturn;
+	}
+	@Override
+	public Generation createFirstGeneration(String[][] userInput) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+	
+
 	
 	
 

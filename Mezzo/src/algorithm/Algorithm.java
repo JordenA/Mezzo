@@ -10,9 +10,10 @@ import variables.Individual;
 public interface Algorithm {
 
 	void fitness();
-	Individual[] reproduce(Generation currentGeneration);
-	Individual generateIndividual(Chunk[] allQualities);
-	Individual[] createFirstPool(Chunk[][] userPicks); 
-
+	public Individual generateIndividual(Chunk[] allQualities);
+	public Individual[] createFirstPool(Chunk[][] userPicks);
+	public Individual[] reproduce(Individual[] pickedSongs); 
+	public Individual createMutation(Individual indi);
+	public Generation createFirstGeneration(String[][] userInput);
 	
 }

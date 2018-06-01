@@ -8,7 +8,6 @@ import DNA.MoodChunk;
 
 public class MoodReader extends AbstractReader {
 
-
 	
 	@Override
 	public Chunk[] readChunk(String strToRead) {

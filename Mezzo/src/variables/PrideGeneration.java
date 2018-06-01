@@ -6,12 +6,14 @@ import algorithm.Algorithm;
 import algorithm.alphaAlgo;
 
 public class PrideGeneration implements Generation {
+	
 	int fitness;
 	Algorithm algo;
 	Individual[] pool;
 	
-	PrideGeneration(){ 
-		algo= new alphaAlgo();
+	public PrideGeneration(){ 
+		//change from null
+		algo= new alphaAlgo(null);
 		//pool = this.algo.createFirstPool();
 	}
 	
@@ -22,41 +24,15 @@ public class PrideGeneration implements Generation {
 	}
 
 	@Override
-	public void reproduce() {
-		algo.reproduce(this);
+	public void reproduce(Individual[] pickedSongs) {
+		pool = algo.reproduce(pickedSongs);
 	}
 
 
-	@Override
-	public Individual getAlpha() {
-		for(int i = 0; i < pool.length ; i++) {
-			if(indi[i].isAlphaMale() == true)
-				return indi[i];
-		}
-		
-		return null;
-	}
 
 
-	@Override
-	public Individual getMutation() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 
-	@Override
-	public List<Individual> getMales() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public List<Individual> getFemales() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 	

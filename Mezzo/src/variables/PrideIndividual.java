@@ -4,12 +4,14 @@ import DNA.Chunk;
 import DNA.DNA;
 import DNA.PrideDNA;
 
-public class PrideIndividual implements Individual {
+public class PrideIndividual implements Individual{
 	private DNA pDNA;
-	private boolean isMale;
-	private boolean isAlphaMale;
-	private boolean isMutation;
-	private boolean isELite;
+	private boolean isAlphaMale = false;
+	private boolean isElliteFemale = false;
+	private boolean isNotEliteFemale = false;
+	private boolean isMale = false;
+	private boolean isMaleMutation = false;
+	private boolean isFemaleMutation = false;
 	
 	
 	public PrideIndividual() {
@@ -27,6 +29,29 @@ public class PrideIndividual implements Individual {
 		}
 	}
 	
+	public void setAlphaMale() {
+		isAlphaMale = true;
+	}
+	
+	public void setElliteFemale() {
+		isElliteFemale = true;
+	}
+	
+	public void setMale() {
+		isMale = true;
+	}
+	public void setNotElliteFemale() {
+		isNotEliteFemale = true;
+	}
+	
+	public void setMaleMutation() {
+		isMaleMutation = true;
+	}
+	
+	public void setFemaleMutation() {
+		isFemaleMutation = true;
+	}
+	
 	
 	@Override
 	public DNA getPrideDNA() {
@@ -37,50 +62,18 @@ public class PrideIndividual implements Individual {
 	public void setPrideDNA(DNA prideDNA) {
 		this.pDNA = prideDNA;
 	}
-	
-	@Override
-	public boolean isMale() {
-		return isMale;
-	}
-	
-	@Override
-	public void setMale(boolean isMale) {
-		this.isMale = isMale;
-	}
-	
-	@Override
-	public boolean isAlphaMale() {
-		return isAlphaMale;
-	}
-	
-	@Override
-	public void setAlphaMale(boolean isAlphaMale) {
-		this.isAlphaMale = isAlphaMale;
-	}
-	
-	@Override
-	public boolean isMutation() {
-		return isMutation;
-	}
-	
-	@Override
-	public void setMutation(boolean isMutation) {
-		this.isMutation = isMutation;
-	}
-	
-	@Override
-	public boolean isELite() {
-		return isELite;
-	}
-	
-	@Override
-	public void setELite(boolean isELite) {
-		this.isELite = isELite;
-	}
 
 	@Override
 	public void addChunk(Chunk chunkToAdd) {
 		pDNA.buildDNA(chunkToAdd);
+		
+	}
+
+	@Override
+	public void addChunks(Chunk[] chunksToAdd) {
+		for(int i =0; i < chunksToAdd.length;i++) {
+			pDNA.buildDNA(chunksToAdd[i]);
+		}
 		
 	}
 	

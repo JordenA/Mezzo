@@ -71,4 +71,8 @@ public class Mood {
 			
 	}
 	
+	public String getUID() {
+		return this.UID;
+	}
+	
 }

@@ -1,6 +1,10 @@
 package variables;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import DNA.Chunk;
@@ -10,14 +14,19 @@ import DNA.Chunk;
  * @author Tuval
  *
  */
-public class GenerationEvaluator {
+public class GenerationEvaluator{
 	
-	private Individual[] toEvaluate;
+	private List<Individual> toEvaluate;
 	private Individual PastAlpha;
+	Comparator indiComparator;
 	
 	
-	public GenerationEvaluator(Individual[] toEvaluate) {
-		this.toEvaluate = toEvaluate;
+	public GenerationEvaluator(LinkedList<Individual> toEvaluate) {
+		toEvaluate = new LinkedList<Individual>();
+		for(Individual ind:toEvaluate) {
+			this.toEvaluate.add(ind);
+		}
+		indiComparator = new IndividualComparator();
 	}
 	
 	public Individual getAlpha() {
@@ -28,8 +37,8 @@ public class GenerationEvaluator {
 			Date d = new Date();
 			Random rand = new Random(d.getTime());
 			//finding a random one 
-			int randomIndi = rand.nextInt(toEvaluate.length);
-			toReturn = toEvaluate[randomIndi];
+			int randomIndi = rand.nextInt(toEvaluate.size());
+			toReturn = toEvaluate.get(randomIndi);
 		}
 		else {
 			toReturn = evaluateGeneration();
@@ -41,8 +50,8 @@ public class GenerationEvaluator {
 	private Individual evaluateGeneration() {
 		Individual toReturn = new PrideIndividual();
 		int maxSimileraty = -1;
-		for(int i = 0; i < toEvaluate.length; i++) {
-			Individual temp = toEvaluate[i];
+		for(int i = 0; i < toEvaluate.size(); i++) {
+			Individual temp = toEvaluate.get(i);
 			int currSimileraty = evaluateIndividual(temp);
 			if(currSimileraty > maxSimileraty) {
 				toReturn = temp;
@@ -68,7 +77,37 @@ public class GenerationEvaluator {
 	 * 2. Ellitte female
 	 * @return
 	 */
-	public Indivdual[] setIndividualRoll() {
+	public List<Individual> setIndividualRoll() {
+		toEvaluate.sort(indiComparator);
+		//alpha
+		toEvaluate.get(0).setAlphaMale();
+		//three elite females
+		toEvaluate.get(1).setElliteFemale();
+		toEvaluate.get(2).setElliteFemale();
+		toEvaluate.get(3).setElliteFemale();
+		//two males
+		toEvaluate.get(4).setMale();
+		toEvaluate.get(5).setMale();
+		//two not elite females
+		toEvaluate.get(6).setNotElliteFemale();
+		toEvaluate.get(7).setNotElliteFemale();
+		//and the two mutations
+		toEvaluate.get(8).setMaleMutation();
+		toEvaluate.get(9).setFemaleMutation();
+		
+		return toEvaluate;
+	}
+
+
+	
+	class IndividualComparator implements  Comparator<Individual>{
+
+		@Override
+		public int compare(Individual o1, Individual o2) {
+			int firstEvaluation =  evaluateIndividual(o1);
+			int secondEvaluation = evaluateIndividual(o2);
+			return firstEvaluation - secondEvaluation;
+		}
 		
 	}
 	

@@ -7,4 +7,8 @@ public interface Chunk {
 	public void setName(String name);
 	
 	public String getUID();
+	
+	public int getChunkNumber();
+	
+	public int getScore();
 }
