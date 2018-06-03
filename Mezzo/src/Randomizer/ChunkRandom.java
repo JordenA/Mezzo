@@ -30,8 +30,9 @@ public class ChunkRandom {
 			System.out.println("ppprprpr");
 		}else {
 			if(toChop[0].getClass() == MoodChunk.class) {
-				int randomInt = this.rand.nextInt(arraySize);
+				int randomInt;
 				while(counter > 0) {
+					randomInt = this.rand.nextInt(arraySize);
 					Chunk temp= toChop[randomInt];
 					//adding above mood at place 0
 					if(MH.getMoodByName(temp.getName()).getCategory() == Mood.Category.ABOVE

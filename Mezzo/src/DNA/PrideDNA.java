@@ -9,7 +9,7 @@ public class PrideDNA implements DNA {
 	
 	
 	public PrideDNA(){
-		
+		myDNA = new LinkedList<>();
 	}
 	
 	public PrideDNA(String userPick){
@@ -29,8 +29,8 @@ public class PrideDNA implements DNA {
 	}
 
 	@Override
-	public void initDNA(List arr) {
-		// TODO Auto-generated method stub
+	public void initDNA(List<Chunk> arr) {
+		this.myDNA.addAll(arr);
 		
 	}
 	

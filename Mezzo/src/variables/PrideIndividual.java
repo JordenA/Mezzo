@@ -15,7 +15,7 @@ public class PrideIndividual implements Individual{
 	
 	
 	public PrideIndividual() {
-		
+		pDNA = new PrideDNA();
 	}
 	
 	public PrideIndividual(DNA indiDNA){

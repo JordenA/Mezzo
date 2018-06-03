@@ -21,11 +21,15 @@ public class GenerationEvaluator{
 	Comparator indiComparator;
 	
 	
-	public GenerationEvaluator(LinkedList<Individual> toEvaluate) {
-		toEvaluate = new LinkedList<Individual>();
-		for(Individual ind:toEvaluate) {
-			this.toEvaluate.add(ind);
-		}
+	public GenerationEvaluator(List<Individual> toEvaluate) {
+		this.toEvaluate = toEvaluate;
+		//for(Individual ind:toEvaluate) {
+		//	this.toEvaluate.add(ind);
+		//}
+		Date d = new Date();
+		Random rand = new Random(d.getTime());
+		int randomInt = rand.nextInt(toEvaluate.size());
+		PastAlpha = toEvaluate.get(randomInt);
 		indiComparator = new IndividualComparator();
 	}
 	

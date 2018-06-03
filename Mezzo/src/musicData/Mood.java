@@ -11,8 +11,11 @@ public class Mood {
 	public Mood(String moodName,String UID, Mood moodParent) {
 		this.UID = UID;
 		this.name= moodName;
-		this.parent = moodParent;
-		if(moodParent != null) {
+		this.parent = moodParent;	
+		if(this.getParentName().equals("nullParent")) {
+			this.cat = this.getNewCategory(this.name);
+		}	
+		if(moodParent != null) {			
 			if(moodParent.getCategory() == null) {
 				this.cat = this.getCategory(moodParent.getName());
 			}
@@ -64,6 +67,25 @@ public class Mood {
 		}else if(parentName.equals("Down (Metal)")) {
 			return Category.DOWN;
 		}else if(parentName.equals("In\\/within (Water)")) {
+			return Category.IN;
+		}else {
+			return null;
+		}
+			
+	}
+	
+	private Category getNewCategory(String name) {
+		if(name.equals("Up (Air)")) {
+			return Category.UP;
+		}else if(name.equals("On (Ground)")) {
+			return Category.ON;
+		}else if(name.equals("Out (Wood)")) {
+			return Category.OUT;
+		}else if(name.equals("Above (Fire)")) {
+			return Category.ABOVE;
+		}else if(name.equals("Down (Metal)")) {
+			return Category.DOWN;
+		}else if(name.equals("In\\/within (Water)")) {
 			return Category.IN;
 		}else {
 			return null;

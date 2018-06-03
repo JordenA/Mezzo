@@ -5,6 +5,7 @@ import DNA.MoodChunk;
 import Randomizer.ChunkRandom;
 import algorithm.Algorithm;
 import algorithm.alphaAlgo;
+import model.Model;
 import musicData.Mood;
 import musicData.MoodHierarchy;
 import textReader.InfluencedByReader;
@@ -14,12 +15,16 @@ import textReader.MoodHierarchyReader;
 import textReader.MoodReader;
 import textReader.PropertiesReader;
 import textReader.Reader;
+import textReader.ReaderWrapper;
 import textReader.SongReader;
 import textReader.TagReader;
 import textReader.UIDReader;
+import variables.Generation;
+import variables.Individual;
 
 public class Test {
 	
+	String[][] testing = new String[20][5];
 	Reader rdr = new MoodReader();
 	Reader rdrInf = new InfluencingReader();
 	Reader rdrInfBy = new InfluencedByReader();
@@ -31,6 +36,8 @@ public class Test {
 	SongReader sngRdr = new SongReader();
 	String moodstr,propertyStr, influencingStr, influencedBystr, UIDString,tagStr, keyStr;
 	Chunk[] toCheck = new MoodChunk[10];
+	Model mdl = new Model();
+	
 	public void testering() {
 		//Algorithm alg = new alphaAlgo();
 		//alg.createFirstPool();
@@ -44,6 +51,18 @@ public class Test {
 		propertyStr = "{\"total\":950644,\"limit\":10,\"offset\":0,\"results\":[{\"uid\":\"3B970FE1-83BB-4291-4F3E-226FBADEE365\",\"nickname\":\"Coldplay\",\"properties\":[{\"uid\":\"18D8FB89-769F-0152-2B32-6B010E3320C9\",\"name\":\"Symphonic Pop \\/ Rock\",\"category\":\"Substyle\",\"importance\":20},{\"uid\":\"4702E505-D588-042D-5595-5EB420AC2FDE\",\"name\":\"Visual : Travel\",\"category\":\"Visual\",\"importance\":10},{\"uid\":\"EFD62F9F-6467-8254-4DF1-7D26BE470974\",\"name\":\"United Kingdom\",\"category\":\"Location\",\"importance\":100},{\"uid\":\"303DF994-3D36-0850-3FE2-9C2F9563740D\",\"name\":\"Countertenor\",\"category\":\"Tessitura\",\"importance\":10},{\"uid\":\"B45A57DE-931B-F295-9EB9-367591D8DBE8\",\"name\":\"Tenor\",\"category\":\"Tessitura\",\"importance\":100},{\"uid\":\"962AEA29-9669-8D80-B7E6-FAB439B2B795\",\"name\":\"Clear medium male (Phil Collins)\",\"category\":\"VoiceFamily\",\"importance\":100},{\"uid\":\"5E1B8AB7-D555-3B0D-AB11-E2DCA57A5DB4\",\"name\":\"English\",\"category\":\"Language\",\"importance\":100},{\"uid\":\"2C967E7E-D9EE-817B-A332-EC8E5984AE50\",\"name\":\"Male Vocal\",\"category\":\"VoiceFamily\",\"importance\":100},{\"uid\":\"49B2FC9D-6559-A176-509D-FBCCCC8E527F\",\"name\":\"European\",\"category\":\"EthnosGroup\",\"importance\":100}],\"score\":100},{\"uid\":\"560BD81D-0173-D847-BD7F-E9D71E32CA8E\",\"nickname\":\"ColdPlay Wu\",\"properties\":[{\"uid\":\"B45A57DE-931B-F295-9EB9-367591D8DBE8\",\"name\":\"Tenor\",\"category\":\"Tessitura\",\"importance\":100},{\"uid\":\"5E1B8AB7-D555-3B0D-AB11-E2DCA57A5DB4\",\"name\":\"English\",\"category\":\"Language\",\"importance\":100},{\"uid\":\"2BA00928-7338-6AD5-B6F7-0E70BD365ED3\",\"name\":\"Male rapper (Jay Z)\",\"category\":\"VoiceFamily\",\"importance\":88},{\"uid\":\"7355439C-D390-BF34-3245-187ADDE90CE7\",\"name\":\"Gangsta Rap (Thug Rap)\",\"category\":\"Substyle\",\"importance\":75},{\"uid\":\"B6B0F96C-E0F1-6BED-0D88-EE60315E9410\",\"name\":\"Vocal Rap\",\"category\":\"Instrument\",\"importance\":100},{\"uid\":\"2C967E7E-D9EE-817B-A332-EC8E5984AE50\",\"name\":\"Male Vocal\",\"category\":\"VoiceFamily\",\"importance\":100}],\"score\":66.31},{\"uid\":\"FB7FAA9C-F404-4F99-E549-FA8068BCAE20\",\"nickname\":\"Dplay\",\"properties\":[],\"score\":18.32},{\"uid\":\"4F068546-4189-D756-C9F9-1028077A83D7\",\"nickname\":\"Coldplay Tribute Band\",\"properties\":[{\"uid\":\"E59EF111-838A-661A-6552-D5F498DF13CF\",\"name\":\"JAZZ\",\"category\":\"Substyle\",\"importance\":16},{\"uid\":\"C4B17A44-4DC8-BF8E-2A34-0BBBE0F42E0F\",\"name\":\"FOLK\",\"category\":\"Substyle\",\"importance\":18}],\"score\":15.02},{\"uid\":\"63D95B74-ACDE-311B-FD67-49BD796D4CEE\",\"nickname\":\"Fieldplayers\",\"properties\":[],\"score\":11.71},{\"uid\":\"14EDF3E0-8DA9-51A8-1632-3863A47D5323\",\"nickname\":\"Foldplop\",\"properties\":[],\"score\":8.77},{\"uid\":\"242A125B-80A6-B461-2B6A-7E80326BF03B\",\"nickname\":\"Manuel Tur, Dplay\",\"properties\":[],\"score\":6.91},{\"uid\":\"8E8D36C3-D35A-3AAD-B87A-5618F2F63E32\",\"nickname\":\"E-Play\",\"properties\":[],\"score\":6.6},{\"uid\":\"B503F701-383D-B426-67CC-C0D7182A958B\",\"nickname\":\"SoundPlay LT\",\"properties\":[],\"score\":6.19},{\"uid\":\"7437D7C8-BEA5-4609-99CB-7A31EAEFFA38\",\"nickname\":\"Ulla Cold\",\"properties\":[],\"score\":5.93}]}\r\n";
 		tagStr = "{\"total\":950644,\"limit\":10,\"offset\":0,\"results\":[{\"uid\":\"3B970FE1-83BB-4291-4F3E-226FBADEE365\",\"nickname\":\"Coldplay\",\"tags\":[\"brit-rock\",\"Alternative\\/Indie\",\"Pop\",\"Pop Rock\",\"rock\",\"alternative\",\"Brit Rock\",\"pop christmas\",\"pop\",\"permanent wave\",\"Melancholy\",\"Long Walk\",\"Sophisticated\",\"Precious\",\"Reflective\",\"Refined\",\"Cathartic\",\"Affirmation\",\"Britpop\",\"Empowering\",\"Ethereal\",\"Theatrical\",\"Adult Alternative Pop\\/Rock\",\"Sunday Afternoon\",\"Autumnal\",\"Stylish\",\"Bittersweet\",\"Passionate\",\"Amiable\\/Good-Natured\",\"Rousing\",\"Reflection\",\"Literate\",\"Alternative\\/Indie Rock\",\"Earnest\",\"Complex\",\"Intimate\",\"Introspection\",\"Dramatic\",\"Pop\\/Rock\",\"Brooding\",\"Poignant\",\"Alternative Pop\\/Rock\",\"Searching\",\"Plaintive\",\"Austere\",\"Earthy\"],\"score\":100},{\"uid\":\"560BD81D-0173-D847-BD7F-E9D71E32CA8E\",\"nickname\":\"ColdPlay Wu\",\"tags\":[],\"score\":66.29},{\"uid\":\"FB7FAA9C-F404-4F99-E549-FA8068BCAE20\",\"nickname\":\"Dplay\",\"tags\":[],\"score\":18.28},{\"uid\":\"4F068546-4189-D756-C9F9-1028077A83D7\",\"nickname\":\"Coldplay Tribute Band\",\"tags\":[\"folk\",\"jazz\",\"folk\"],\"score\":15.02},{\"uid\":\"63D95B74-ACDE-311B-FD67-49BD796D4CEE\",\"nickname\":\"Fieldplayers\",\"tags\":[],\"score\":11.72},{\"uid\":\"14EDF3E0-8DA9-51A8-1632-3863A47D5323\",\"nickname\":\"Foldplop\",\"tags\":[],\"score\":8.72},{\"uid\":\"242A125B-80A6-B461-2B6A-7E80326BF03B\",\"nickname\":\"Manuel Tur, Dplay\",\"tags\":[],\"score\":6.92},{\"uid\":\"8E8D36C3-D35A-3AAD-B87A-5618F2F63E32\",\"nickname\":\"E-Play\",\"tags\":[],\"score\":6.56},{\"uid\":\"B503F701-383D-B426-67CC-C0D7182A958B\",\"nickname\":\"SoundPlay LT\",\"tags\":[],\"score\":6.2},{\"uid\":\"7437D7C8-BEA5-4609-99CB-7A31EAEFFA38\",\"nickname\":\"Ulla Cold\",\"tags\":[],\"score\":5.94}]}\r\n";
 		keyStr = "total\":950644,\"limit\":10,\"offset\":0,\"results\":[{\"uid\":\"3B970FE1-83BB-4291-4F3E-226FBADEE365\",\"nickname\":\"Coldplay\",\"keywords\":[{\"uid\":\"765A8CE4-71BF-D80E-84C2-E7FA78712E8C\",\"name\":\"Arena rock\",\"importance\":66},{\"uid\":\"3283A763-F478-C66B-4CC0-6FD6A1A70CF0\",\"name\":\"Pop Idol \\/ Celebrity\",\"importance\":62},{\"uid\":\"AA693D08-8D68-010F-5488-B987DC04E6CA\",\"name\":\"Award winners\",\"importance\":66},{\"uid\":\"BC565E66-CFC1-466D-C5CA-53F754BAA458\",\"name\":\"vocal pop\",\"importance\":78},{\"uid\":\"E8245C6D-3747-3D4B-9C06-F37A68A3B974\",\"name\":\"Rural\",\"importance\":24},{\"uid\":\"877F1483-A4AD-E768-79FA-3F16AC196543\",\"name\":\"March (music)\",\"importance\":1},{\"uid\":\"FC52BD6D-9B3A-B5DC-F4E4-DFE8FE608F6B\",\"name\":\"Ethereal\",\"importance\":16},{\"uid\":\"E17FDBD1-6C1D-8C21-2631-4D8EDE180609\",\"name\":\"Alternative pop\",\"importance\":55},{\"uid\":\"581B8EEC-EA5C-9775-61C9-145EC28AA80B\",\"name\":\"Alternative\",\"importance\":44}],\"score\":100},{\"uid\":\"560BD81D-0173-D847-BD7F-E9D71E32CA8E\",\"nickname\":\"ColdPlay Wu\",\"keywords\":[{\"uid\":\"CAC5ACFF-424C-FD7C-D986-EA434E2F9E31\",\"name\":\"Urban\",\"importance\":100},{\"uid\":\"DCE9171E-93D3-987E-2955-DEED502A0665\",\"name\":\"Indie\",\"importance\":100}],\"score\":66.27},{\"uid\":\"FB7FAA9C-F404-4F99-E549-FA8068BCAE20\",\"nickname\":\"Dplay\",\"keywords\":[],\"score\":18.29},{\"uid\":\"4F068546-4189-D756-C9F9-1028077A83D7\",\"nickname\":\"Coldplay Tribute Band\",\"keywords\":[],\"score\":14.98},{\"uid\":\"63D95B74-ACDE-311B-FD67-49BD796D4CEE\",\"nickname\":\"Fieldplayers\",\"keywords\":[],\"score\":11.73},{\"uid\":\"14EDF3E0-8DA9-51A8-1632-3863A47D5323\",\"nickname\":\"Foldplop\",\"keywords\":[],\"score\":8.73},{\"uid\":\"242A125B-80A6-B461-2B6A-7E80326BF03B\",\"nickname\":\"Manuel Tur, Dplay\",\"keywords\":[],\"score\":6.92},{\"uid\":\"8E8D36C3-D35A-3AAD-B87A-5618F2F63E32\",\"nickname\":\"E-Play\",\"keywords\":[],\"score\":6.56},{\"uid\":\"B503F701-383D-B426-67CC-C0D7182A958B\",\"nickname\":\"SoundPlay LT\",\"keywords\":[],\"score\":6.2},{\"uid\":\"7437D7C8-BEA5-4609-99CB-7A31EAEFFA38\",\"nickname\":\"Ulla Cold\",\"keywords\":[],\"score\":5.94}]}\r\n";
+		for(int i=0; i< testing.length; i ++) {
+			testing[i][0] = moodstr;
+			testing[i][1] = influencingStr;
+			testing[i][2] = influencedBystr;
+			testing[i][3] = keyStr;
+			testing[i][4] = propertyStr;
+											
+		}
+	
+	
+	
+	
 	}
 	
 	
@@ -77,22 +96,45 @@ public class Test {
 		return null;
 	}
 	
-	public void randomChecker() {
-		toCheck[0] = new MoodChunk("happy", "2323232", 10);
-		toCheck[1] = new MoodChunk("sad", "2323232", 100);
-		toCheck[2] = new MoodChunk("inspired", "2323232", 20);
-		toCheck[3] = new MoodChunk("positive", "2323232", 45);
-		toCheck[4] = new MoodChunk("vicious", "2323232", 8);
-		toCheck[5] = new MoodChunk("tuned", "2323232", 16);
-		toCheck[6] = new MoodChunk("paranoid", "2323232", 83);
-		toCheck[7] = new MoodChunk("complex", "2323232", 55);
-		toCheck[8] = new MoodChunk("manic", "2323232", 72);
-		toCheck[9] = new MoodChunk("summery", "2323232", 27);	
+	public void randomChecker() {	
+		//ReaderWrapper RR = new ReaderWrapper();
+		//RR.ReadGenerationChunks(testing);
+		mdl.createFirstPool(testing);
+		//Generation toUse = mdl.getGeneration();
+		Individual helper = mdl.getIndividualFromAPI(testing[0]);
+		Individual helper1 = mdl.getIndividualFromAPI(testing[0]);
+		Individual helper2 = mdl.getIndividualFromAPI(testing[0]);
+		Individual helper3 = mdl.getIndividualFromAPI(testing[0]);
+		Individual helper4 = mdl.getIndividualFromAPI(testing[0]);
+		Individual helper5 = mdl.getIndividualFromAPI(testing[0]);	
+		Individual helper6 = mdl.getIndividualFromAPI(testing[0]);
+		Individual helper7 = mdl.getIndividualFromAPI(testing[0]);	
+		Individual helper8 = mdl.getIndividualFromAPI(testing[0]);
+		Individual helper9 = mdl.getIndividualFromAPI(testing[0]);
+		Individual helper10 = mdl.getIndividualFromAPI(testing[0]);
+		Individual helper11 = mdl.getIndividualFromAPI(testing[0]);
+		
+		System.out.println(helper);
+		mdl.addToNextGeneration(helper);
+		mdl.addToNextGeneration(helper1);
+		mdl.addToNextGeneration(helper2);
+		mdl.addToNextGeneration(helper3);
+		mdl.addToNextGeneration(helper4);
+		mdl.addToNextGeneration(helper5);
+		mdl.addToNextGeneration(helper6);
+		mdl.addToNextGeneration(helper7);
+		mdl.addToNextGeneration(helper8);
+		mdl.addToNextGeneration(helper9);
+		mdl.addToNextGeneration(helper10);
+		mdl.addToNextGeneration(helper11);
+		
+		/**
 		MoodHierarchyReader MHR = new MoodHierarchyReader();
 		MoodHierarchy MH = MHR.readMoodHierarchy("hhh");
 		ChunkRandom CR = new ChunkRandom(MH);
 		Chunk[] WTF = CR.randomChunks(toCheck);
 		System.out.println(WTF.toString());
+		**/
 	}
 
 }

@@ -23,7 +23,7 @@ public class MoodHierarchyReader {
 			String moodName = mood.substring(0, mood.indexOf("\""));
 			//removing the mood we used
 			mood = mood.substring(mood.indexOf("\",\"") + 3);
-			System.out.println("adding mood " + moodName + " with UID " + moodUID + " with parent " + curpar);
+			//System.out.println("adding mood " + moodName + " with UID " + moodUID + " with parent " + curpar);
 			toReturn.addMood(moodName,moodUID, curpar);
 			mood = mood.substring(mood.indexOf("children\":[") + "children\":[".length());
 			if(mood.startsWith("{")) {
@@ -34,7 +34,7 @@ public class MoodHierarchyReader {
 			}
 			while(mood.startsWith("]}")) {
 				mood = mood.substring(mood.indexOf("]}") + "]}".length());
-				System.out.println("current parent is now " + curpar);
+				//System.out.println("current parent is now " + curpar);
 				if(!curpar.equals("nullParent")) {
 					curpar = toReturn.getParentName(curpar);
 				}

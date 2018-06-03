@@ -11,10 +11,13 @@ public class MoodReader extends AbstractReader {
 	
 	@Override
 	public Chunk[] readChunk(String strToRead) {
-		Chunk[] toReturn = new Chunk[20];
+		Chunk[] toReturn = new Chunk[100];
 		String mood;
 		mood = strToRead.substring(strToRead.indexOf("\"moods\":") + "\"moods\":".length());
-		for(int i = 0; i < 20 ; i++) {
+		for(int i = 0; i < 100 ; i++) {
+			if(mood.length() < 9) {
+				break;
+			}
 			mood = mood.substring(mood.indexOf("\"uid\":\"")+ "\"uid\":\"".length());
 			//removing everything from what we want to assign
 			String UID = mood.substring(0, mood.indexOf("\",\""));
